@@ -1,0 +1,17 @@
+import pandas as pd
+import string
+d = pd.read_csv("/mnt/data/day12_users.csv")
+d["c"] = d["city"]
+d["c"] = d["c"].str.strip()
+d["c"] = d["c"].str.lower()
+d["c"] = d["c"].str.translate(str.maketrans("", "", string.punctuation))
+d["c"] = d["c"].replace("nyc", "new york")
+d["c"] = d["c"].replace("new york city", "new york")
+d["c"] = d["c"].replace("la", "los angeles")
+d["c"] = d["c"].replace("sf", "san francisco")
+d["t"] = pd.to_datetime(d["timestamp"], errors="coerce")
+d["t"] = d["t"].dt.tz_localize("UTC")
+print(d["city"])
+print(d["c"])
+print(d["timestamp"])
+print(d["t"])
