@@ -1,0 +1,15 @@
+import pandas as pd
+df = pd.read_csv("day11_income.csv")
+c = df["income"]
+def winsorize_series(s, lower_q=0.01, upper_q=0.99):
+    lower = s.quantile(lower_q)
+    upper = s.quantile(upper_q)
+    return s.clip(lower, upper)
+def remove_upper_tail(s, upper_q=0.99):
+    upper = s.quantile(upper_q)
+    return s[s <= upper]
+a = winsorize_series(c)
+b= remove_upper_tail(c)
+print(c.describe())
+print(a.describe())
+print(b.describe()) 
