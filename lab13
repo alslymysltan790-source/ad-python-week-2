@@ -1,0 +1,13 @@
+import pandas as pd
+import time
+t0 = time.time()
+r = 0
+f = True
+chunks = pd.read_csv('input.csv', chunksize=1000)
+for d in chunks:
+    for c in d.columns:
+        d[c] = pd.to_numeric(d[c], errors='ignore')
+    d.to_csv('output.csv', mode='a', index=False, header=f)
+    f = False
+    r += len(d)
+print( r, round(time.time() - t0, 2))
