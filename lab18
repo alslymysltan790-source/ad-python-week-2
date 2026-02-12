@@ -1,0 +1,9 @@
+
+import pandas as pd
+d = pd.read_csv("day18_binning.csv")
+e = [0, 13, 18, 65, 120]
+l = ["Child", "Teen", "Adult", "Senior"]
+d["g"] = pd.cut(d["age"], bins=e, labels=l, right=False)
+g_o = pd.get_dummies(d["g"])
+print(d)
+print(d["g"].value_counts())
