@@ -1,0 +1,14 @@
+
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import PowerTransformer
+a = pd.read_csv("day19_transform.csv")
+b = a["spend"]
+c = np.log1p(b)
+d = np.sqrt(b)
+e = PowerTransformer()
+f = e.fit_transform(b.values.reshape(-1, 1))
+print(b.describe())
+print(pd.Series(c).describe())
+print(pd.Series(d).describe())
+print(pd.Series(f.flatten()).describe())
