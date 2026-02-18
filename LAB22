@@ -1,0 +1,10 @@
+import pandas as pd
+a = pd.read_csv("day22_interactions.csv")
+b = a.select_dtypes(include="number").columns.tolist()
+c = b[-1]
+d = b[0]
+e = b[1]
+a["f"] = a[d] * a[e]
+a["g"] = a[d] + a[e]
+a["h"] = ((a[d] > a[d].mean()) & (a[e] > a[e].mean())).astype(int)
+print(a[[d, e, "f", "g", "h", c]].corr()[c])
