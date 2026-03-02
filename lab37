@@ -1,0 +1,9 @@
+import numpy as np
+x = np.array([1, 2, 3])
+z = np.array([0.5, 1, 1.5])
+dot = np.dot(x, z)
+len_x = np.linalg.norm(x)
+len_z = np.linalg.norm(z)
+cos= dot / (len_x * len_z)
+print( dot)
+print( cos)
