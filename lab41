@@ -1,0 +1,15 @@
+import numpy as np
+a = 6
+b = 10000
+c = np.random.randint(1, a + 1, b)
+d = 3
+e = np.sum(c == d)
+f = e / b
+g = 1 / a
+h = abs(f - g)
+print( b)
+print( d)
+print( e)
+print( f)
+print( g)
+print( h)
