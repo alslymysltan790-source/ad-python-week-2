@@ -1,0 +1,22 @@
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+a = 1000
+b = np.random.uniform(0, 1, a)
+c = np.random.normal(0, 1, a)
+d = np.mean(b)
+e = np.std(b)
+f = np.mean(c)
+g = np.std(c)
+plt.figure()
+sns.histplot(b, kde=True)
+plt.title("Uniform Distribution")
+plt.show()
+plt.figure()
+sns.histplot(c, kde=True)
+plt.title("Normal Distribution")
+plt.show()
+print( d)
+print( e)
+print( f)
+print( g)
