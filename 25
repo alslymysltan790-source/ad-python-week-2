@@ -1,0 +1,23 @@
+
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.feature_selection import VarianceThreshold
+a = pd.read_csv("day25_project.csv")
+b = a.drop("target", axis=1)
+c = a["target"]
+d = b.columns[0]
+e = b.columns[1] if len(b.columns) > 1 else d
+b["f"] = b[d] * b[e]
+b["g"] = np.log1p(b[d])
+h = PolynomialFeatures(2, include_bias=False)
+i = h.fit_transform(b[[d]])
+j = pd.DataFrame(i)
+b = pd.concat([b.reset_index(drop=True), j.reset_index(drop=True)], axis=1)
+b = b.replace([np.inf, -np.inf], np.nan).fillna(0)
+k = VarianceThreshold(0.01)
+l = k.fit_transform(b)
+m = b.columns[k.get_support()]
+n = pd.DataFrame(l, columns=m)
+o = pd.concat([n, c.reset_index(drop=True)], axis=1)
+o.to_csv("data/day25_engineered.csv", index=False)
