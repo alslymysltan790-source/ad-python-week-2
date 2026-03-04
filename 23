@@ -1,0 +1,21 @@
+import pandas as pd
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+a = pd.read_csv("day23_poly.csv")
+b = a[["x"]]
+c = a["y"]
+d = PolynomialFeatures(1)
+e = d.fit_transform(b)
+f = LinearRegression()
+f.fit(e, c)
+print("1:", f.score(e, c))
+g = PolynomialFeatures(2)
+h = g.fit_transform(b)
+i = LinearRegression()
+i.fit(h, c)
+print("2:", i.score(h, c))
+j = PolynomialFeatures(5)
+k = j.fit_transform(b)
+l = LinearRegression()
+l.fit(k, c)
+print("5:", l.score(k, c))
