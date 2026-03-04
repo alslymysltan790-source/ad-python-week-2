@@ -1,0 +1,16 @@
+
+import pandas as pd
+import matplotlib.pyplot as plt
+C = pd.read_csv("day28_groupby.csv")
+print(C.head())
+D = C.groupby(["region", "segment"])
+E = D["sales"].mean()
+F = E.reset_index()
+print(F)
+G = C.groupby("region")
+H = G["sales"].mean()
+H.plot(kind="bar")
+ plt.title("Mean Sales by Region")
+ plt.xlabel("Region")
+ plt.ylabel("Mean Sales")
+ plt.show()
