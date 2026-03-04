@@ -1,0 +1,8 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+a = pd.read_csv("day32_relationships.csv")
+sns.scatterplot(data=a, x="Age", y="Salary", hue="Department", style="Gender")
+plt.show()
+sns.relplot(data=a, x="Age", y="Salary", hue="Department", col="Gender")
+plt.show()
