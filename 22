@@ -1,0 +1,8 @@
+
+import pandas as pd
+a = pd.read_csv("day22_interactions.csv")
+a["b"] = a["x1"] * a["x2"]      # multiply
+a["c"] = a["x1"] + a["x2"]      # add
+a["d"] = (a["x1"] > 0).astype(int)  # logical (1 if x1 > 0)
+e = a.corr()
+print(e["target"])
