@@ -1,0 +1,21 @@
+import pandas as pd
+from sklearn.feature_selection import VarianceThreshold
+from sklearn.linear_model import LinearRegression
+a = pd.read_csv("day24_selection.csv")
+b = a.drop("target", axis=1)
+c = a["target"]
+d = LinearRegression()
+d.fit(b, c)
+print( d.score(b, c))
+e = VarianceThreshold(0.01)
+f = e.fit_transform(b)
+g = b.columns[e.get_support()]
+h = pd.DataFrame(f, columns=g)
+i = h.corr().abs()
+j = i["target"] if "target" in i else None
+k = i.where(i > 0.9).stack().index.tolist()
+l = set([x[1] for x in k if x[0] != x[1]])
+m = h.drop(columns=l)
+n = LinearRegression()
+n.fit(m, c)
+print( n.score(m, c))
