@@ -1,0 +1,30 @@
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+a = pd.read_csv("day29_correlations.csv")
+b = a.corr()
+plt.figure(figsize=(8,6))
+sns.heatmap(b, annot=True, cmap="coolwarm")
+plt.title("Correlation Heatmap")
+plt.show()
+c = b.unstack()                
+d = c.sort_value
+print(d[1:6])   
+print(d[-5:])
+e = b.abs().unstack().sort_values(ascending=False)
+f = e[1]  
+g = f[0]  
+h = f[1]  
+plt.figure()
+sns.scatterplot(x=a[g], y=a[h])
+plt.title("Strong  Plot")
+plt.show()
+i = b.abs().unstack().sort_values()
+j = i[0]
+k = j[0]
+l = j[1]
+plt.figure()
+sns.scatterplot(x=a[k], y=a[l])
+plt.title("Weak Correlation Scatter Plot")
+plt.show()
