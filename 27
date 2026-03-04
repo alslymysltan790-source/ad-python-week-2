@@ -1,0 +1,27 @@
+
+import pandas as pd
+import matplotlib.pyplot as plt
+a = pd.read_csv("day27_boxplots.csv")
+b = a["score"]
+plt.figure()
+plt.hist(b, bins=5)
+plt.title("Histogram ")
+plt.xlabel("Score")
+plt.ylabel("Frequency")
+plt.show()
+c = a["group"].unique()
+d = []
+for e in c:
+    f = a[a["group"] == e]["score"]
+    d.append(f)
+plt.figure()
+plt.boxplot(d, labels=c)
+plt.title("Boxplot ")
+plt.xlabel("Group")
+plt.ylabel("Score")
+plt.show()
+for g in c:
+    h = a[a["group"] == g]["score"]
+    print( g)
+    print( h.mean())
+    print( h.median())
