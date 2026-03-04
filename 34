@@ -1,0 +1,8 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+a = pd.read_csv("day34_patterns.csv")
+sns.relplot(data=a, x="Age", y="Sales", hue="Category", col="Region")
+plt.show()
+sns.lmplot(data=a, x="Age", y="Sales", hue="Category", col="Region")
+plt.show()
